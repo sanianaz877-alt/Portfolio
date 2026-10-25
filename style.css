@@ -1,1 +1,159 @@
+/* Sania Naz Portfolio - black / dark maroon / white, Pinterest-style equal cards */
+:root {
+  --bg: #000;
+  --maroon: #a01b3f;        /* headings on black */
+  --maroon-deep: #6b0f2a;   /* icon & logo backgrounds */
+  --maroon-dark: #3d0818;   /* darkest maroon */
+  --white: #fff;
+  --text-light: #f1e6e9;    /* text on black */
+  --text-dark: #111;        /* text on white cards */
+  --card-shadow: 0 8px 24px rgba(160, 27, 63, 0.28);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  color: var(--text-light);
+  background: #000;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.2; color: var(--maroon); }
+a { color: inherit; text-decoration: none; }
 
+/* NAV */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  gap: 10px; padding: 12px 5vw;
+  background: rgba(0,0,0,.92); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--maroon-deep);
+}
+.logo { display: flex; align-items: center; gap: 10px; font-family: 'Playfair Display', Georgia, serif; font-size: 1.4rem; font-weight: 700; color: var(--white); }
+.logo .nm { color: #fff; }
+.logo-icon {
+  width: 36px; height: 36px; border-radius: 10px; flex: none;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--maroon-deep), var(--maroon-dark));
+  border: 1px solid var(--maroon);
+  color: #fff;
+}
+.nav ul { display: flex; gap: 6px; list-style: none; flex-wrap: wrap; }
+.nav ul a {
+  position: relative; padding: 7px 14px; border-radius: 999px; font-size: .88rem; font-weight: 500; color: var(--white);
+  transition: background .2s;
+}
+/* red line under the link: shows on hover, on click/press, on keyboard focus and on the current page */
+.nav ul a::after {
+  content: ""; position: absolute; left: 14px; right: 14px; bottom: 1px; height: 3px; border-radius: 3px;
+  background: #e0243f; transform: scaleX(0); transition: transform .2s;
+}
+.nav ul a:hover, .nav ul a:focus-visible, .nav ul a:active { background: var(--maroon-deep); outline: none; }
+.nav ul a:hover::after, .nav ul a:focus-visible::after, .nav ul a:active::after, .nav ul a.active::after { transform: scaleX(1); }
+.nav ul a.active { background: var(--maroon-deep); }
+
+/* LAYOUT */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 40px 5vw 70px; }
+.page-title { text-align: center; margin-bottom: 36px; }
+.page-title h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+.page-title p { color: var(--text-light); margin-top: 8px; }
+.tag {
+  display: inline-block; padding: 4px 14px; border-radius: 999px;
+  background: var(--maroon-deep); border: 1px solid var(--maroon); color: #fff;
+  font-size: .78rem; font-weight: 600; letter-spacing: .05em; margin-bottom: 10px;
+}
+
+/* EQUAL-SIZE PINTEREST-STYLE CARD GRID (all pages) */
+.masonry { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 22px; }
+.masonry.cols-2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 900px) { .masonry { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .masonry, .masonry.cols-2 { grid-template-columns: 1fr; } }
+.pin {
+  display: flex; flex-direction: column;
+  border-radius: 22px; overflow: hidden;
+  background: #fff; color: var(--text-dark); box-shadow: var(--card-shadow);
+  transition: transform .25s, box-shadow .25s;
+}
+.pin:hover { transform: translateY(-6px); box-shadow: 0 16px 34px rgba(160,27,63,.45); }
+.pin .art {
+  height: 160px; flex: none;
+  display: flex; align-items: center; justify-content: center; font-size: 3.4rem;
+}
+.pin .body { padding: 18px 20px 22px; flex: 1; }
+.pin h3 { font-size: 1.2rem; margin-bottom: 6px; color: var(--maroon-deep); }
+.pin p { font-size: .92rem; color: var(--text-dark); }
+.pin ul { margin: 10px 0 0 18px; color: var(--text-dark); font-size: .9rem; }
+/* icon / logo backgrounds: dark maroon */
+.c1, .c2, .c3, .c4, .c5, .c6 { background: linear-gradient(135deg, var(--maroon-deep), var(--maroon-dark)); }
+
+/* HERO */
+.hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding: 30px 0 50px; }
+@media (max-width: 800px) { .hero { grid-template-columns: 1fr; text-align: center; } }
+.hero h1 { font-size: clamp(3.6rem, 10vw, 6.4rem); margin: 0 0 14px; color: var(--maroon); letter-spacing: -.01em; }
+.hero h1 em { font-style: italic; color: var(--maroon); }
+.hero .by { font-size: .95rem; letter-spacing: .14em; text-transform: uppercase; color: var(--white); margin: 4px 0 16px; font-weight: 500; }
+.hero p { color: var(--text-light); max-width: 520px; }
+@media (max-width: 800px) { .hero p { margin: 0 auto; } }
+.btns { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+@media (max-width: 800px) { .btns { justify-content: center; } }
+.btn {
+  padding: 12px 26px; border-radius: 999px; font-weight: 600; font-size: .92rem;
+  background: var(--maroon-deep); border: 2px solid var(--maroon); color: #fff;
+  transition: transform .2s;
+}
+.btn:hover { transform: translateY(-3px); }
+.btn.alt { background: transparent; color: #fff; }
+.avatar {
+  width: min(320px, 70vw); aspect-ratio: 1; margin: 0 auto; border-radius: 50% 50% 46% 54% / 55% 45% 55% 45%;
+  background: linear-gradient(135deg, var(--maroon-deep), var(--maroon-dark));
+  border: 2px solid var(--maroon);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 6rem; color: #fff; font-weight: 700;
+  box-shadow: 0 20px 50px rgba(160,27,63,.4);
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float { 50% { transform: translateY(-14px); } }
+.logo-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin: 10px 0 36px; }
+.logo-chip {
+  display: flex; align-items: center; gap: 8px; padding: 8px 18px 8px 8px; border-radius: 999px;
+  background: #fff; color: var(--text-dark); box-shadow: var(--card-shadow); font-size: .85rem; font-weight: 500;
+}
+.logo-chip b {
+  width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--maroon-deep), var(--maroon-dark)); font-size: 1.1rem;
+}
+
+/* EDUCATION */
+.edu-logo {
+  width: 86px; height: 86px; border-radius: 22px; display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; color: #fff; margin-bottom: 14px;
+  border: 2px solid var(--maroon);
+}
+.badge { display: inline-block; margin-top: 10px; padding: 3px 12px; border-radius: 999px; background: var(--maroon-deep); color: #fff; font-size: .75rem; font-weight: 600; }
+
+/* SKILLS */
+.bar { height: 10px; border-radius: 999px; background: #ead7dd; margin-top: 12px; overflow: hidden; }
+.bar i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--maroon-dark), var(--maroon)); }
+
+/* CONTACT */
+.contact-card { display: flex; align-items: center; gap: 16px; }
+.pin .body.contact-card { flex: 1; }
+.contact-card .ico {
+  flex: none; width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; background: linear-gradient(135deg, var(--maroon-deep), var(--maroon-dark));
+}
+.contact-card small { color: #444; display: block; }
+.contact-card strong { color: var(--text-dark); word-break: break-word; }
+.form-pin { max-width: 640px; margin: 28px auto 0; }
+form { display: grid; gap: 12px; margin-top: 12px; }
+input, textarea {
+  width: 100%; padding: 12px 16px; border: 1.5px solid #cfc3c7; border-radius: 14px;
+  font: inherit; background: #fff; color: var(--text-dark); outline: none;
+}
+input::placeholder, textarea::placeholder { color: #777; }
+input:focus, textarea:focus { border-color: var(--maroon); }
+button.btn { cursor: pointer; font-family: inherit; }
+
+/* FOOTER */
+footer { text-align: center; padding: 26px 5vw 40px; color: #bdb0b4; font-size: .85rem; }
+footer span { color: var(--maroon); }
